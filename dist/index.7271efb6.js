@@ -2936,17 +2936,18 @@ const QuoteBox = ()=>{
     const [quotes, setQuotes] = (0, _react.useState)([]);
     const [randomQuote, setRandomQuote] = (0, _react.useState)([]);
     const [color, setRandomColor] = (0, _react.useState)("#fff");
+    const [wallpaper, setWallpaper] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         async function fetchData() {
             const response = await fetch("https://type.fit/api/quotes");
             const data = await response.json();
             const colors = [
-                "#16a085",
-                "#27ae60",
-                "#2c3e50",
+                "#16A085",
+                "#27AE60",
+                "#2C3E50",
                 "#f39c2",
-                "#e74c3c",
-                "#9b59b6",
+                "#E74C3C",
+                "#9B59B6",
                 "#FB6964",
                 "#342224",
                 "#472E32",
@@ -2954,6 +2955,16 @@ const QuoteBox = ()=>{
                 "#77B1A9",
                 "#73A857"
             ];
+            const wallpapers = [
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067572843170250813/Smash_4k_inspirational_wallpaper_74bfc580-fe40-44d5-87b3-bdd584f4ba6d.png",
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067573203117031585/Smash_4k_inspirational_wallpaper_2dbdab82-3be8-4c29-a56f-bbab997af134.png",
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067921040107393075/Smash_4k_inspirational_background_a3261e6a-c784-4d6f-949e-9905ecad0cad.png",
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067921481415266435/Smash_4k_inspirational_background_4f19137a-92f8-44a8-a518-c06c8f641872.png",
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067921495545880647/Smash_4k_inspirational_background_f8be3c4f-1305-4914-8959-7255802d6c16.png",
+                "https://cdn.discordapp.com/attachments/966491171142631444/1067921783791046756/Smash_4k_inspirational_background_371ad996-1a76-4f4f-9027-f66c6b99c378.png"
+            ];
+            let randomWallpaperIndex = Math.floor(Math.random() * wallpapers.length);
+            setWallpaper(wallpapers[randomWallpaperIndex]);
             let randomColor = Math.floor(Math.random() * colors.length);
             setRandomColor(colors[randomColor]);
             setQuotes(data);
@@ -2964,12 +2975,12 @@ const QuoteBox = ()=>{
     }, []);
     const getNewQuote = ()=>{
         const colors = [
-            "#16a085",
-            "#27ae60",
-            "#2c3e50",
+            "#16A085",
+            "#27AE60",
+            "#2C3E50",
             "#f39c2",
-            "#e74c3c",
-            "#9b59b6",
+            "#E74C3C",
+            "#9B59B6",
             "#FB6964",
             "#342224",
             "#472E32",
@@ -2977,26 +2988,39 @@ const QuoteBox = ()=>{
             "#77B1A9",
             "#73A857"
         ];
+        const wallpapers = [
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067572843170250813/Smash_4k_inspirational_wallpaper_74bfc580-fe40-44d5-87b3-bdd584f4ba6d.png",
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067573203117031585/Smash_4k_inspirational_wallpaper_2dbdab82-3be8-4c29-a56f-bbab997af134.png",
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067921040107393075/Smash_4k_inspirational_background_a3261e6a-c784-4d6f-949e-9905ecad0cad.png",
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067921481415266435/Smash_4k_inspirational_background_4f19137a-92f8-44a8-a518-c06c8f641872.png",
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067921495545880647/Smash_4k_inspirational_background_f8be3c4f-1305-4914-8959-7255802d6c16.png",
+            "https://cdn.discordapp.com/attachments/966491171142631444/1067921783791046756/Smash_4k_inspirational_background_371ad996-1a76-4f4f-9027-f66c6b99c378.png"
+        ];
+        let randomWallpaperIndex = Math.floor(Math.random() * wallpapers.length);
+        setWallpaper(wallpapers[randomWallpaperIndex]);
         let randomIndex = Math.floor(Math.random() * quotes.length);
-        let randomColor = Math.floor(Math.random() * colors.length);
         setRandomQuote(quotes[randomIndex]);
+        let randomColor = Math.floor(Math.random() * colors.length);
         setRandomColor(colors[randomColor]);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "background",
             style: {
-                backgroundColor: color,
-                minHeight: "100vh"
+                minHeight: "100vh",
+                backgroundImage: `url(${wallpaper})`,
+                backgroundSize: "cover"
             },
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 id: "quote-box",
+                className: "white-box",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     children: [
                         randomQuote ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                     id: "text",
+                                    className: "quoteText",
                                     style: {
                                         color: color
                                     },
@@ -3007,8 +3031,8 @@ const QuoteBox = ()=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/App.js",
-                                    lineNumber: 67,
-                                    columnNumber: 7
+                                    lineNumber: 90,
+                                    columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                     id: "author",
@@ -3022,16 +3046,16 @@ const QuoteBox = ()=>{
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/App.js",
-                                    lineNumber: 68,
-                                    columnNumber: 7
+                                    lineNumber: 91,
+                                    columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                             children: "Loading"
                         }, void 0, false, {
                             fileName: "src/App.js",
-                            lineNumber: 71,
-                            columnNumber: 7
+                            lineNumber: 94,
+                            columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             id: "rowWrap",
@@ -3046,8 +3070,8 @@ const QuoteBox = ()=>{
                                     children: " New Quote"
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 74,
-                                    columnNumber: 9
+                                    lineNumber: 97,
+                                    columnNumber: 15
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                                     href: "https://www.tumblr.com/widgets/share/tool?posttype=quote&quotes,freecodecamp&caption=" + encodeURIComponent(randomQuote.author) + "&content=" + encodeURIComponent(randomQuote.text) + "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button",
@@ -3060,13 +3084,13 @@ const QuoteBox = ()=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "src/App.js",
-                                        lineNumber: 82,
-                                        columnNumber: 9
+                                        lineNumber: 105,
+                                        columnNumber: 15
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 75,
-                                    columnNumber: 7
+                                    lineNumber: 98,
+                                    columnNumber: 13
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
                                     href: "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=" + encodeURIComponent('"' + randomQuote.text + '" ' + randomQuote.author),
@@ -3079,51 +3103,51 @@ const QuoteBox = ()=>{
                                         }
                                     }, void 0, false, {
                                         fileName: "src/App.js",
-                                        lineNumber: 90,
-                                        columnNumber: 9
+                                        lineNumber: 113,
+                                        columnNumber: 15
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/App.js",
-                                    lineNumber: 84,
-                                    columnNumber: 7
+                                    lineNumber: 107,
+                                    columnNumber: 13
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/App.js",
-                            lineNumber: 73,
-                            columnNumber: 5
+                            lineNumber: 96,
+                            columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/App.js",
-                    lineNumber: 64,
-                    columnNumber: 5
+                    lineNumber: 87,
+                    columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 63,
-                columnNumber: 3
+                lineNumber: 86,
+                columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 62,
-            columnNumber: 3
+            lineNumber: 78,
+            columnNumber: 7
         }, undefined)
     }, void 0, false);
 };
-_s(QuoteBox, "dpgDjJ4u9kIhviUA5E81qPtTl+4=");
+_s(QuoteBox, "k8zzIXiE5m5b2tmNWWdR/AhcofU=");
 _c = QuoteBox;
 const App = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(QuoteBox, {}, void 0, false, {
                 fileName: "src/App.js",
-                lineNumber: 104,
+                lineNumber: 126,
                 columnNumber: 7
             }, undefined)
         }, void 0, false, {
             fileName: "src/App.js",
-            lineNumber: 103,
+            lineNumber: 125,
             columnNumber: 5
         }, undefined)
     }, void 0, false);
@@ -3131,7 +3155,7 @@ const App = ()=>{
 _c1 = App;
 (0, _reactDom.render)(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "src/App.js",
-    lineNumber: 110,
+    lineNumber: 131,
     columnNumber: 8
 }, undefined), document.getElementById("root"));
 var _c, _c1;
